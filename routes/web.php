@@ -28,10 +28,8 @@ Route::get('/test_memcache', function () {
     if (Cache::has('photos')) {
         return Cache::get('photos');
     }
-    else{
-        $minutes = 10;
-        $json = json_decode(file_get_contents('https://jsonplaceholder.typicode.com/photos'), true);
-        Cache::put('photos', $json, $minutes);
-        return 'Cache has been created';
-    }
+    $minutes = 10;
+    $json = json_decode(file_get_contents('https://jsonplaceholder.typicode.com/photos'), true);
+    Cache::put('photos', $json, $minutes);
+    return $json;
 });
